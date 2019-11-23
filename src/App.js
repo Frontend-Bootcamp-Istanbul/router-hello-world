@@ -8,37 +8,38 @@ import LoginPage from "./LoginPage";
 import {Link} from "react-router-dom";
 
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 function App(props) {
-   const loggedIn = false;
-  return (
-    <div className="App">
-        <div style={{background: "pink", color: "#fff"}}>
-            Header
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/otherPage">Other Page</Link>
-                </li>
-                <li>
-                    <Link to="asdasdasdasd/">Olmayan Page</Link>
-                </li>
-            </ul>
+    console.log(props);
+    return (
+        <div className="App">
+            <div style={{background: "pink", color: "#fff"}}>
+                Header
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/otherPage">Other Page</Link>
+                    </li>
+                    <li>
+                        <Link to="asdasdasdasd/">Olmayan Page</Link>
+                    </li>
+                </ul>
+            </div>
+            <Switch>
+                <Route exact path="/" component={(props) => <HomePage {...props} isLoggedIn={isLoggedIn}/>}/>
+                <Route exact path="/homepage" component={(props) => <HomePage {...props} isLoggedIn={isLoggedIn}/>}/>
+                <Route exact path="/product/:id" component={OtherPage}/>
+                <Route exact path="/login" component={(props) => <LoginPage {...props} isLoggedIn={isLoggedIn}/>}/>
+                <Route component={NotFound}/>
+            </Switch>
+            <div style={{background: "pink", color: "#fff"}}>
+                Footer
+            </div>
         </div>
-      <Switch>
-        <Route exact path="/" component={(props) => <HomePage {...props} isLoggedIn={isLoggedIn}/>} />
-        <Route exact path="/product/:id" component={OtherPage} />
-        <Route exact path="/login" component={() => <LoginPage isLoggedIn={isLoggedIn} />} />
-        <Route component={NotFound} />
-      </Switch>
-        <div style={{background: "pink", color: "#fff"}}>
-            Footer
-        </div>
-    </div>
-  );
+    );
 }
 
 export default App;

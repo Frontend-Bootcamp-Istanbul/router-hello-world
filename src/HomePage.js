@@ -12,7 +12,7 @@ function HomePage(props) {
     return (
         <div>
             {
-                !props.isLoggedIn ? loggedInView : loggedOutView
+                props.isLoggedIn ? loggedInView : loggedOutView
             }
         </div>
     );
